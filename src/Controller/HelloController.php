@@ -6,9 +6,14 @@ namespace App\Controller;
 // J'informe les use que j'ai besoin
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HelloController extends AbstractController {
+    
+    /**
+    * @Route("/hello")
+    */
 
     function hello(Request $request) {
         // Avec la méthode Response
@@ -48,5 +53,23 @@ class HelloController extends AbstractController {
 
         //  return new Response($string);
          
+    }
+    /**
+    * @Route("/hello/{params}" , requirements={"params" = "\d+"}, name="digit")
+    */
+
+    function helloNumber($params) {
+        return $this->render("hello/helloNumber.html.twig", [
+            "number" => $params]); 
+        }
+
+    /**
+    * @Route("/hello/{params}", name="withParams")
+    */
+
+    function helloWithParam($params) {
+        return $this->render("hello/helloParams.html.twig", [
+            "names" => $params
+        ]);
     }
 };
