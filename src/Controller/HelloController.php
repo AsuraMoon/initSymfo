@@ -60,11 +60,12 @@ class HelloController extends AbstractController {
 
     function helloNumber($params) {
         return $this->render("hello/helloNumber.html.twig", [
-            "number" => $params]); 
-        }
+            "number" => $params
+            ]); }
+        
 
     /**
-    * @Route("/hello/{params}", name="withParams")
+    * @Route("/hello/{params}", name="names")
     */
 
     function helloWithParam($params) {
