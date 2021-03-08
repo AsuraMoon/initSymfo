@@ -2,37 +2,57 @@
 
 namespace App\Entity;
 
-class User {
+use App\Repository\UserRepository;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass=UserRepository::class)
+ */
+class User
+{
     /**
-     * 2propriétés
-     * -nom => $name
-     * -email => $email
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
+    private $id;
 
     /**
-     * PUBLIC :accessible a tous
-     * PROTECTED : accessible dans les classes mere et fille
-     * PRIVATE : accessible que dans la classe
+     * @ORM\Column(type="string", length=50)
      */
+    private $name;
 
-    protected $email;
-    protected $name;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
 
-    //getter du name
-    public function getName(){
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
         return $this->name;
     }
 
-    public function setName($name){
+    public function setName(string $name): self
+    {
         $this->name = $name;
+
+        return $this;
     }
-    
-    //getter du name
-    public function getEmail(){
+
+    public function getEmail(): ?string
+    {
         return $this->email;
     }
 
-    public function setEmail($email){
+    public function setEmail(string $email): self
+    {
         $this->email = $email;
+
+        return $this;
     }
 }
