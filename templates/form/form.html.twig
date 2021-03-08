@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Exemple de formulaire!{% endblock %}
+
+{#
+    {%  %} -> exécuter 
+    {{  }} -> rendu
+    {#  ♯} -> commentaire
+    { .. | .. } -> modifier
+#}
+
+{% block body %}
+
+formulaire : {{form(form)}}
+
+
+{% endblock %}
