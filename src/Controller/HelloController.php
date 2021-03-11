@@ -10,11 +10,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HelloController extends AbstractController {
-    
-    /**
-    * @Route("/hello")
-    */
 
+
+
+    /**
+     * @Route("/hello", name="home" )
+     */
     function hello(Request $request) {
         // Avec la méthode Response
         // return new Response("Hello world!");
@@ -27,6 +28,7 @@ class HelloController extends AbstractController {
         //     'title' => $user,
         //     'array' => $userName
         // ]);
+
         return $this->render("hello/index.html.twig");
 
         // Manipulation Request / Response
@@ -51,26 +53,38 @@ class HelloController extends AbstractController {
         //      $string = $string . ' - ' . $key . ' : ' . $value . '<br />';
         //  }
 
-        //  return new Response($string);
+         // return new Response($string);
          
     }
-    /**
-    * @Route("/hello/{params}" , requirements={"params" = "\d+"}, name="digit")
-    */
 
+
+
+    /**
+     * @Route("/hello/{params}", requirements={"params" = "\d+"}, name="digit")
+     */
     function helloNumber($params) {
+    /*  
+        1. Créer un fichier de template. ✅
+
+        2. Utiliser la méthode render() d'AbstractController qui fera reference à la vue créer ci dessus (point 1) ✅
+
+        3. Passer le params à la vu pour l'afficher ✅
+
+        4. Good luck ! ✅
+    */
         return $this->render("hello/helloNumber.html.twig", [
-            "number" => $params
-            ]); }
-        
+            'number' => $params
+        ]);
+
+    }
 
     /**
-    * @Route("/hello/{params}", name="names")
-    */
-
+     * @Route("/hello/{params}", name="name")
+     */
     function helloWithParam($params) {
         return $this->render("hello/helloParams.html.twig", [
-            "names" => $params
+            "name" => $params
         ]);
     }
+
 };

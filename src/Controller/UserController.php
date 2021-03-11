@@ -2,8 +2,10 @@
 // namespace
 namespace App\Controller;
 
-// J'importe ce dont j'ai besoin
 use App\Entity\User;
+//j'import mon form user
+use App\Form\UserType;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -41,17 +43,28 @@ class UserController extends AbstractController {
          * 2eme façon de faire en utilisant le fichier UserType.php
          */
 
-         
+         $form = $this->createForm(UserType::class, $user);
 
         /** La gestion du form */
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            $userInfo = $form->getData();
+
+            // Je récupère l'entityManager avec la commande suivante 
+            $entityManager = $this->getDoctrine()->getManager();
+
+            // Je prepare les datas pour les persister en BDD
+            $entityManager->persist($userInfo);
+
+            // On pousse nos info en BDD
+            $entityManager->flush();
+
            return new Response("Le formulaire a bien été soumis et validé !");
         }
 
         /** Fin de la gestion du form */
-        return $this->render("form/form.html  .twig", [
+        return $this->render("form/form.html.twig", [
             'form' => $form->createView()
         ]);
     }

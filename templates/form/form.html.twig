@@ -1,16 +1,22 @@
 {% extends 'base.html.twig' %}
-{% block title %}Exemple de formulaire!{% endblock %}
+{% block title %}Exemple de formulaire{% endblock %}
 
-{#
-    {%  %} -> exécuter 
-    {{  }} -> rendu
-    {#  ♯} -> commentaire
-    { .. | .. } -> modifier
-#}
 
 {% block body %}
 
-formulaire : {{form(form)}}
-
-
+    <div class="container mt-5">
+        {#  formulaire : {{form(form)}} #}
+        {{ form_start(form) }}
+        <div style="background-color: “#FBFBFB">
+            {{ form_row(form.name) }}
+        </div>
+        <div style="background-color: #FAFAFA">
+            {{ form_row(form.email) }}
+        </div>
+        <div style="background-color: “#FBFBFB">
+            {{ form_row(form.password) }}
+        </div>
+        <button type="submit">Envoyer</button>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

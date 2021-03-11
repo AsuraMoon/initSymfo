@@ -1,16 +1,10 @@
 {% extends 'base.html.twig' %}
-{% block title %}Chiffre!{% endblock %}
-
-{#
-    {%  %} -> exécuter 
-    {{  }} -> rendu
-    {#  ♯} -> commentaire
-    { .. | .. } -> modifier
-#}
+{% block title %}Route number{% endblock %}
 
 {% block body %}
 
-Ce nombre est 42 , nan je déconne c'est {{number}}
-
+    <div class="container mt-5">
+        Le chiffre est le {{ number }}
+    </div>
 
 {% endblock %}

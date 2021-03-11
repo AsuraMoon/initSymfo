@@ -1,15 +1,12 @@
 {% extends 'base.html.twig' %}
-{% block title %}Nom!{% endblock %}
+{% block title %}Route Params{% endblock %}
 
-{#
-    {%  %} -> exécuter 
-    {{  }} -> rendu
-    {#  ♯} -> commentaire
-    { .. | .. } -> modifier
-#}
+
 
 {% block body %}
 
-Hello {{names}}
+    <div class="container mt-5">
+        Hello {{ name }} !
+    </div>
 
 {% endblock %}
